@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real-time Quiz Client</title>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      input,
+      button {
+        margin: 4px;
+        padding: 6px;
+      }
+      ul {
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>🧠 Real-time Vocabulary Quiz</h2>
+
+    <div>
+      <input id="quizId" placeholder="Quiz ID" value="quiz-1" />
+      <input id="userId" placeholder="User ID" />
+      <button onclick="joinQuiz()">Join Quiz</button>
+    </div>
+
+    <div style="margin-top: 10px">
+      <button onclick="submitAnswer('A')">Submit Answer A (Correct)</button>
+      <button onclick="submitAnswer('B')">Submit Answer B</button>
+    </div>
+
+    <h3>🏆 Leaderboard</h3>
+    <ul id="leaderboard"></ul>
+
+    <script>
+      /**
+       * AI-assisted:
+       * - ChatGPT generated basic Socket.IO client wiring
+       * - Manually simplified & tested with multi-tab scenario
+       */
+
+      const socket = io("http://localhost:3000");
+      let currentQuizId = "";
+      let currentUserId = "";
+
+      function joinQuiz() {
+        currentQuizId = document.getElementById("quizId").value;
+        currentUserId =
+          document.getElementById("userId").value ||
+          "user-" + Math.floor(Math.random() * 1000);
+
+        document.getElementById("userId").value = currentUserId;
+
+        socket.emit("join_quiz", {
+          quizId: currentQuizId,
+          userId: currentUserId,
+        });
+      }
+
+      function submitAnswer(answer) {
+        if (!currentQuizId || !currentUserId) {
+          alert("Join quiz first!");
+          return;
+        }
+
+        socket.emit("submit_answer", {
+          quizId: currentQuizId,
+          userId: currentUserId,
+          answer,
+        });
+      }
+
+      socket.on("leaderboard_updated", (leaderboard) => {
+        const ul = document.getElementById("leaderboard");
+        ul.innerHTML = "";
+
+        leaderboard.forEach((item, index) => {
+          const li = document.createElement("li");
+          li.innerText = `${index + 1}. ${item.userId} - ${item.score}`;
+          ul.appendChild(li);
+        });
+      });
+    </script>
+  </body>
+</html>
