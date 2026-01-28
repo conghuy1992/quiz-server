@@ -145,7 +145,7 @@ You can open `public/client.html` in multiple browser tabs to simulate multiple 
 ### Tools Used
 
 * **ChatGPT** – system design brainstorming, Socket.IO boilerplate, data structure suggestions
-* *(Optional)* GitHub Copilot – minor code completion
+* *(Optional)* GitHub Copilot/Gemini/Claude – minor code completion/ review code
 
 ---
 
