@@ -7,7 +7,15 @@
 **Focus:** Real-time systems, product-oriented development
 
 ---
+## 🎥 Demo Video
 
+A walkthrough covering:
+- System design overview
+- Real-time quiz demo
+- AI collaboration process
+- Conclusion  
+👉 Watch here: https://drive.google.com/file/d/1lX_k_RIr1g0u0F3ccfwZjbu6T0lFllg4/view?usp=drive_link
+---
 ## 📌 Assignment Overview
 
 This project implements a **real-time vocabulary quiz feature** for an English learning application. The system allows multiple users to:
