@@ -19,7 +19,7 @@ io.on("connection", (socket) => {
   console.log("User connected:", socket.id);
 
   socket.on("join_quiz", ({ quizId, userId }) => {
-    quizManager.joinQuiz(quizId, userId, socket);
+    quizManager.joinQuiz(quizId, userId);
     socket.join(quizId);
     io.to(quizId).emit(
       "leaderboard_updated",
