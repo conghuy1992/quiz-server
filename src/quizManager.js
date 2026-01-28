@@ -1,7 +1,11 @@
+const { buildLeaderboard } = require("./leaderboard");
+
 /**
+ * Quiz state manager
+ *
  * AI-assisted:
  * - Data structure suggestion from ChatGPT
- * - Refined manually to ensure deterministic scoring
+ * - Final structure refined manually
  */
 
 class QuizManager {
@@ -37,12 +41,7 @@ class QuizManager {
     const quiz = this.quizzes.get(quizId);
     if (!quiz) return [];
 
-    return [...quiz.users.entries()]
-      .map(([userId, data]) => ({
-        userId,
-        score: data.score,
-      }))
-      .sort((a, b) => b.score - a.score);
+    return buildLeaderboard(quiz.users);
   }
 }
 
