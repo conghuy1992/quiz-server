@@ -2,8 +2,8 @@
 
 ## 👤 Candidate
 
-**Name:** Huy Huynh
-**Role:** Software Engineer
+**Name:** Huy Huynh  
+**Role:** Software Engineer  
 **Focus:** Real-time systems, product-oriented development
 
 ---
